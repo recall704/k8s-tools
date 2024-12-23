@@ -1,7 +1,8 @@
 # 镜像名称和版本
 IMAGE_NAME := nfs-config-tool
-VERSION := $(shell git describe --tags --always --dirty)
+VERSION ?= $(shell git describe --tags --always --dirty)
 RElEASE_REGISTRY := docker.io/win7
+BASE_PATH ?= /tools
 
 # 默认目标
 .PHONY: all
@@ -11,21 +12,21 @@ all: build
 .PHONY: build
 build:
 	@echo "Building Docker image..."
-	docker build -t ${RElEASE_REGISTRY}/${IMAGE_NAME}:$(VERSION) .
+	docker build -t ${RElEASE_REGISTRY}/${IMAGE_NAME}:${VERSION} --build-arg BASE_PATH=${BASE_PATH} .
 	docker tag ${RElEASE_REGISTRY}/${IMAGE_NAME}:${VERSION} ${RElEASE_REGISTRY}/${IMAGE_NAME}:latest
 
 # 推送镜像到仓库
 .PHONY: push
 push:
 	@echo "Pushing Docker image..."
-	docker push ${RElEASE_REGISTRY}/${IMAGE_NAME}:$(VERSION)
+	docker push ${RElEASE_REGISTRY}/${IMAGE_NAME}:${VERSION}
 	docker push ${RElEASE_REGISTRY}/${IMAGE_NAME}:latest
 
 # 运行容器
 .PHONY: run
 run:
 	@echo "Running container..."
-	docker run -p 3000:3000 ${RElEASE_REGISTRY}/${IMAGE_NAME}:latest
+	docker run -p 3000:3000 -e BASE_PATH=${BASE_PATH} ${RElEASE_REGISTRY}/${IMAGE_NAME}:latest
 
 # 停止并删除容器
 .PHONY: clean
@@ -38,8 +39,11 @@ clean:
 .PHONY: help
 help:
 	@echo "Available targets:"
-	@echo "  make build    - Build Docker image"
-	@echo "  make push     - Push image to RElEASE_registry"
-	@echo "  make run      - Run container"
-	@echo "  make clean    - Stop and remove container"
-	@echo "  make help     - Show this help"
+	@echo "  make build              - Build Docker image"
+	@echo "  make push              - Push image to RElEASE_registry"
+	@echo "  make run               - Run container"
+	@echo "  make clean             - Stop and remove container"
+	@echo "  make help              - Show this help"
+	@echo ""
+	@echo "Environment variables:"
+	@echo "  BASE_PATH              - Base path for the application (default: /tools)"

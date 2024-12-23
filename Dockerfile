@@ -14,6 +14,8 @@ RUN npm ci
 COPY . .
 
 # 构建应用
+ARG BASE_PATH=/tools
+ENV BASE_PATH=${BASE_PATH}
 RUN npm run build
 
 # 运行阶段
@@ -24,6 +26,7 @@ WORKDIR /app
 # 设置环境变量
 ENV NODE_ENV production
 ENV PORT 3000
+ENV BASE_PATH=/tools
 
 # 从构建阶段复制必要文件
 COPY --from=builder /app/public ./public

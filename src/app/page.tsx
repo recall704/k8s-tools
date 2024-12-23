@@ -138,7 +138,11 @@ export default function Home() {
     if (opts.noresvport) mountOptions.push('noresvport');
     if (opts.proto && opts.proto !== '-') mountOptions.push(`proto=${opts.proto}`);
     if (opts.nfsvers) mountOptions.push(`nfsvers=${opts.nfsvers}`);
-    if (opts.retrans) mountOptions.push(`retrans=${opts.retrans}`);
+    // 检查 retrans 是否为有效值（不为空且为正整数）
+    const retransValue = opts.retrans !== '' ? Number(opts.retrans) : null;
+    if (retransValue !== null && Number.isInteger(retransValue) && retransValue > 0) {
+      mountOptions.push(`retrans=${retransValue}`);
+    }
 
     return mountOptions;
   };
@@ -370,12 +374,16 @@ export default function Home() {
                     >
                       <InputNumber
                         min={0}
-                        defaultValue={defaultMountOptions.retrans}
+                        defaultValue={defaultMountOptions.retrans === '' ? undefined : Number(defaultMountOptions.retrans)}
                         controls={{
                           upIcon: <PlusOutlined />,
                           downIcon: <MinusOutlined />
                         }}
                         style={{ width: '100%' }}
+                        onChange={(value) => {
+                          // 当值为 null 时，表示输入框为空
+                          form.setFieldValue(['mountOptions', 'retrans'], value === null ? '' : value);
+                        }}
                       />
                     </Form.Item>
 
