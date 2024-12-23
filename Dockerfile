@@ -25,16 +25,15 @@ WORKDIR /app
 
 # 设置环境变量
 ENV NODE_ENV production
-ENV PORT 3000
+ENV PORT 3001
 ENV BASE_PATH=/tools
 
 # 从构建阶段复制必要文件
-COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
 
 # 暴露端口
-EXPOSE 3000
+EXPOSE 3001
 
 # 启动应用
 CMD ["node", "server.js"]

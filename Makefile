@@ -1,5 +1,5 @@
 # 镜像名称和版本
-IMAGE_NAME := nfs-config-tool
+IMAGE_NAME := k8s-tools
 VERSION ?= $(shell git describe --tags --always --dirty)
 RElEASE_REGISTRY := docker.io/win7
 BASE_PATH ?= /tools
@@ -26,7 +26,7 @@ push:
 .PHONY: run
 run:
 	@echo "Running container..."
-	docker run -p 3000:3000 -e BASE_PATH=${BASE_PATH} ${RElEASE_REGISTRY}/${IMAGE_NAME}:latest
+	docker run --rm -p 3001:3001 -e BASE_PATH=${BASE_PATH} ${RElEASE_REGISTRY}/${IMAGE_NAME}:latest
 
 # 停止并删除容器
 .PHONY: clean
