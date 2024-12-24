@@ -46,7 +46,7 @@ export default function Home() {
   const generateConfig = (values: ConfigValues) => {
     const { namespace, name, nfs_server, nfs_path, size, readonly, mountOptions } = values;
     if (!namespace || !name || !nfs_server || !nfs_path || !size) return;
-    
+
     const suffix = readonly ? '-readonly' : '';
     const pvName = `pv-nfs-${namespace}-${name}${suffix}`;
     const pvcName = `pvc-nfs-${name}${suffix}`;
@@ -79,6 +79,10 @@ export default function Home() {
         metadata: {
           name: pvcName,
           namespace: namespace,
+          labels: {
+            "z-onesoft-storage-volume-type": "common",
+            "z-onesoft-storage-pvc-readonly": readonly ? "true" : "false",
+          },
         },
         spec: {
           accessModes: ['ReadWriteMany'],

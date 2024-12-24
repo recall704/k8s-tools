@@ -12,7 +12,7 @@ all: build
 .PHONY: build
 build:
 	@echo "Building Docker image..."
-	docker build -t ${RElEASE_REGISTRY}/${IMAGE_NAME}:${VERSION} --build-arg BASE_PATH=${BASE_PATH} .
+	docker build --network=host -t ${RElEASE_REGISTRY}/${IMAGE_NAME}:${VERSION} --build-arg BASE_PATH=${BASE_PATH} .
 	docker tag ${RElEASE_REGISTRY}/${IMAGE_NAME}:${VERSION} ${RElEASE_REGISTRY}/${IMAGE_NAME}:latest
 
 # 推送镜像到仓库
