@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Card, Typography, Space, Form } from 'antd';
 import yaml from 'js-yaml';
-import { ConfigForm, ConfigValues, MountOptions } from '../components/ConfigForm';
+import { NFSPVCForm, ConfigValues, MountOptions } from '../components/NFSPVCForm';
 import { YamlDisplay } from '../components/YamlDisplay';
 import { i18n } from '../i18n/locales';
 import { useAppContext } from '../contexts/AppContext';
@@ -110,7 +110,7 @@ export default function NFSPage() {
     <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
       <Card>
         <Title level={2}>{t.title}</Title>
-        <ConfigForm
+        <NFSPVCForm
           form={form}
           onGenerate={generateConfig}
           onReset={handleReset}

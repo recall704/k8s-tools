@@ -23,7 +23,7 @@ export interface ConfigValues {
   mountOptions: MountOptions;
 }
 
-interface ConfigFormProps {
+interface NFSPVCFormProps {
   form: FormInstance<ConfigValues>;
   t: Record<string, string>;
   defaultMountOptions: MountOptions;
@@ -31,7 +31,7 @@ interface ConfigFormProps {
   onReset: () => void;
 }
 
-export const ConfigForm: React.FC<ConfigFormProps> = React.memo(({ 
+export const NFSPVCForm: React.FC<NFSPVCFormProps> = React.memo(({ 
   form, 
   t, 
   defaultMountOptions, 

@@ -2,7 +2,7 @@ export type Language = 'zh-CN' | 'en-US';
 
 export const i18n: Record<Language, Record<string, string>> = {
   'zh-CN': {
-    title: 'K8S NFS 配置生成器',
+    title: 'NFS 存储配置',
     namespace: '命名空间',
     namespacePlaceholder: '例如：default',
     name: '名称',
@@ -57,7 +57,7 @@ export const i18n: Record<Language, Record<string, string>> = {
     cephUserPlaceholder: '例如：admin',
   },
   'en-US': {
-    title: 'K8S NFS Configuration Generator',
+    title: 'NFS Storage Configuration',
     namespace: 'Namespace',
     namespacePlaceholder: 'e.g. default',
     name: 'Name',

@@ -42,72 +42,73 @@ const CephPVCForm: React.FC<CephPVCFormProps> = ({ onSubmit }) => {
       form={form}
       layout="vertical"
       onFinish={handleSubmit}
-      className="max-w-2xl"
+      style={{ gap: '8px' }}
       initialValues={defaultValues}
     >
-      <Form.Item
-        label={t.namespace}
-        name="namespace"
-        rules={[{ required: true, message: t.required }]}
-      >
-        <Input placeholder={t.namespacePlaceholder} />
-      </Form.Item>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+        <Form.Item
+          label={t.namespace}
+          name="namespace"
+          rules={[{ required: true, message: t.required }]}
+        >
+          <Input placeholder={t.namespacePlaceholder} />
+        </Form.Item>
 
-      <Form.Item
-        label={t.cephPvcName}
-        name="pvcName"
-        rules={[{ required: true, message: t.required }]}
-      >
-        <Input placeholder={t.cephPvcNamePlaceholder} />
-      </Form.Item>
-      <Form.Item
-        label={t.cephUser}
-        name="cephUser"
-        rules={[{ required: true, message: t.required }]}
-      >
-        <Input placeholder={t.cephUserPlaceholder} />
-      </Form.Item>
-      <Form.Item
-        label={
-          <Space>
-            {t.cephAuthKey}
-            <Tooltip title={t.cephAuthKeyTooltip}>
-              <QuestionCircleOutlined />
-            </Tooltip>
-          </Space>
-        }
-        name="cephAuthKey"
-        rules={[{ required: true, message: t.required }]}
-      >
-        <Input.Password placeholder={t.cephAuthKeyPlaceholder} />
-      </Form.Item>
+        <Form.Item
+          label={t.cephPvcName}
+          name="pvcName"
+          rules={[{ required: true, message: t.required }]}
+        >
+          <Input placeholder={t.cephPvcNamePlaceholder} />
+        </Form.Item>
+        <Form.Item
+          label={t.cephUser}
+          name="cephUser"
+          rules={[{ required: true, message: t.required }]}
+        >
+          <Input placeholder={t.cephUserPlaceholder} />
+        </Form.Item>
+        <Form.Item
+          label={
+            <Space>
+              {t.cephAuthKey}
+              <Tooltip title={t.cephAuthKeyTooltip}>
+                <QuestionCircleOutlined />
+              </Tooltip>
+            </Space>
+          }
+          name="cephAuthKey"
+          rules={[{ required: true, message: t.required }]}
+        >
+          <Input.Password placeholder={t.cephAuthKeyPlaceholder} />
+        </Form.Item>
 
-      <Form.Item
-        label={t.cephMonitors}
-        name="monitors"
-        rules={[{ required: true, message: t.required }]}
-      >
-        <Input placeholder={t.cephMonitorsPlaceholder} />
-      </Form.Item>
+        <Form.Item
+          label={t.cephMonitors}
+          name="monitors"
+          rules={[{ required: true, message: t.required }]}
+        >
+          <Input placeholder={t.cephMonitorsPlaceholder} />
+        </Form.Item>
 
-      <Form.Item
-        label={t.cephSize}
-        name="cephSize"
-        rules={[{ required: true, message: t.required }]}
-      >
-        <Input placeholder={t.cephSizePlaceholder} />
-      </Form.Item>
+        <Form.Item
+          label={t.cephSize}
+          name="cephSize"
+          rules={[{ required: true, message: t.required }]}
+        >
+          <Input placeholder={t.cephSizePlaceholder} />
+        </Form.Item>
 
-      <Form.Item label={t.readonly} name="pvcReadonly" valuePropName="checked">
-        <Switch />
-      </Form.Item>
-
-      <Form.Item>
-        <Space>
-          <Button type="primary" htmlType="submit">
+        <Form.Item label={t.readonly} name="pvcReadonly" valuePropName="checked">
+          <Switch />
+        </Form.Item>
+      </div>
+      <Form.Item style={{ marginBottom: '16px' }}>
+        <Space style={{ width: '100%', justifyContent: 'center', gap: '16px' }}>
+          <Button type="primary" htmlType="submit" style={{ width: '120px' }}>
             {t.generate}
           </Button>
-          <Button onClick={() => form.resetFields()}>{t.reset}</Button>
+          <Button onClick={() => form.resetFields()} style={{ width: '120px' }}>{t.reset}</Button>
         </Space>
       </Form.Item>
     </Form>

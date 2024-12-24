@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Card, Typography, Space, Switch, ConfigProvider, theme, Form } from 'antd';
 import yaml from 'js-yaml';
-import { ConfigForm, ConfigValues, MountOptions } from './components/ConfigForm';
+import { NFSPVCForm, ConfigValues, MountOptions } from './components/NFSPVCForm';
 import { YamlDisplay } from './components/YamlDisplay';
 import { i18n, Language } from './i18n/locales';
 
@@ -160,7 +160,7 @@ export default function Home() {
               </Space>
             </div>
 
-            <ConfigForm
+            <NFSPVCForm
               form={form}
               t={t}
               defaultMountOptions={defaultMountOptions}

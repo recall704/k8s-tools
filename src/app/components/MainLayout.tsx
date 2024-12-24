@@ -38,13 +38,15 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
         theme={isDarkMode ? 'dark' : 'light'}
         style={{
           borderRight: `1px solid ${isDarkMode ? '#303030' : '#f0f0f0'}`,
+          backgroundColor: isDarkMode ? '#141414' : '#fff',
         }}
       >
         <div 
           style={{ 
             height: 32, 
             margin: 16, 
-            background: isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)' 
+            background: isDarkMode ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.1)',
+            borderRadius: '4px',
           }} 
         />
         <Menu
@@ -52,6 +54,10 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
           selectedKeys={[pathname]}
           mode="inline"
           items={menuItems}
+          style={{
+            backgroundColor: isDarkMode ? '#141414' : '#fff',
+            color: isDarkMode ? 'rgba(255, 255, 255, 0.85)' : 'rgba(0, 0, 0, 0.85)',
+          }}
         />
       </Sider>
       <Layout>
