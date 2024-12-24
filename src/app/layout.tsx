@@ -1,21 +1,24 @@
-import './globals.css'
-import { Inter } from 'next/font/google'
+import './globals.css';
+import { Inter } from 'next/font/google';
+import { ClientLayout } from './components/ClientLayout';
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'NFS 配置生成器',
-  description: '生成 Kubernetes NFS PV 和 PVC 配置',
-}
+  title: 'K8S 工具集',
+  description: 'Kubernetes 存储配置生成工具',
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
-    <html lang="zh">
-      <body className={inter.className}>{children}</body>
+    <html lang="en">
+      <body className={inter.className}>
+        <ClientLayout>{children}</ClientLayout>
+      </body>
     </html>
-  )
+  );
 }
